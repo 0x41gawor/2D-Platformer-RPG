@@ -29,7 +29,7 @@ int Game::play()
 
 		window.clear();
 		camera.update(window);
-		map.draw(window);
+		map.draw(window,camera.get_posX());
 		player.draw(window);
 		window.display();
 	}

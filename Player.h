@@ -15,7 +15,7 @@ private:
 	float movementSpeed;	                                                             //MS from boots / velocity on OX
 	float mass;				                                                             //mass
 	float velocityY;		                                                             //velocity on OY
-	float jumpForce;		                                                             //sila skoku 
+	float jumpForce;		                                                             //how high player is jumping
 	bool onGround;			                                                             //true if player is on ground and there no need to move him down
 																							
 																						 //C O L L I S I O N
@@ -31,8 +31,10 @@ private:
 public:
 	Player(Map* map);
 
-	void update(const float& dt);														 
-	void draw(sf::RenderWindow&);
+	void update(const float& dt);														 //udpate
+	void draw(sf::RenderWindow&);														 //drawing player
 	void apply_force(float force);														 //makes player move upwards
 	void collision();																	 //position correction taking into account map collsion after update
+
+	~Player();
 };	

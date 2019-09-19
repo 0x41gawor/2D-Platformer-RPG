@@ -14,6 +14,7 @@ class Game
 
   public:
 	  Game();
+
 	  int play();													                     //play a single level
 
 	  ~Game();

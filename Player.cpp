@@ -8,7 +8,7 @@ rightBanned{false}
 	body.setSize(sf::Vector2f(width,height));
 	body.setFillColor(sf::Color(100, 255, 100));
 	body.setOrigin(width/2, height/2);
-	body.setPosition(200, 14 * GRID + height / 2);
+	body.setPosition(200, 2 * GRID + height / 2);
 
 
 	a = 40.f;
@@ -71,4 +71,9 @@ void Player::collision()
 		newPos.x = 0;
 
 	body.setPosition(newPos);
+}
+
+Player::~Player()
+{
+	map = nullptr;
 }

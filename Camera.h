@@ -14,12 +14,12 @@ class Camera
 	  float dx;																			 //diffrence beetwen lastMousX and mouseX showing hot much move view
   public:
 	  Camera();
+
 	  void update(sf::RenderWindow& window);											 //update what part of map is shown on the screen
-
 	  float get_posX();																	 //returns global x postion of camera
-	  float get_posY();																	 //returns global y postion of camera
-
 	  void set_posX(float x);															 //sets global x position of camera
+
+	  ~Camera();
 
 
 

@@ -13,11 +13,11 @@ Map::Map() : mapArray{ 0 },mapDrawer{sf::Vector2f(GRID,GRID)},color{sf::Color(0,
 	mapArray[95][11] = block1;
 }
 
-void Map::draw(sf::RenderWindow& window)
+void Map::draw(sf::RenderWindow& window,float camX)
 {
 	for (int y = 0; y < MAP_SIZE_Y; y++)
 	{
-		for (int x = 0; x < MAP_SIZE_X; x++)
+		for (int x = static_cast<int>(camX/60) - SCREEN_WIDTH/2/60; x < static_cast<int>(camX / 60) + SCREEN_WIDTH/2/60 + 1; x++)
 		{
 			switch (mapArray[x][y])
 			{
@@ -66,7 +66,7 @@ bool Map::is_terrain(float x, float y)
 	if (x<0 || x>MAP_SIZE_X * GRID || y<0 || y> MAP_SIZE_X * GRID)
 		return false;
 
-	if(mapArray[static_cast<int>(x/60.f)][static_cast<int>(y / 60.f)]==0)
+	if(mapArray[static_cast<int>(x/60.f)][static_cast<int>(y/60.f)]==0)
 		return false;
 	else
 		return true;

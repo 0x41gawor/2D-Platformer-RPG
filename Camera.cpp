@@ -29,11 +29,6 @@ float Camera::get_posX()
 	return posX;
 }
 
-float Camera::get_posY()
-{
-	return posY;
-}
-
 void Camera::set_posX(float x)
 {
 	posX = x;
@@ -42,4 +37,9 @@ void Camera::set_posX(float x)
 		posX = SCREEN_WIDTH / 2.f;
 	else if (posX > SCREEN_WIDTH * 2.5f)
 		posX = SCREEN_WIDTH * 2.5f;
+}
+
+Camera::~Camera()
+{
+	;;
 }
