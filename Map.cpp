@@ -61,6 +61,17 @@ void Map::set_tile(float x, float y, int type)
 	mapArray[static_cast<int>(x / 60)][static_cast<int>(y / 60)] = type;
 }
 
+bool Map::is_terrain(float x, float y)
+{
+	if (x<0 || x>MAP_SIZE_X * GRID || y<0 || y> MAP_SIZE_X * GRID)
+		return false;
+
+	if(mapArray[static_cast<int>(x/60.f)][static_cast<int>(y / 60.f)]==0)
+		return false;
+	else
+		return true;
+}
+
 Map::~Map()
 {
 }

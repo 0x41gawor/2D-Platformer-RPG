@@ -1,7 +1,7 @@
 #include "Game.h"
 
 
-Game::Game()
+Game::Game():player{&map}
 {
 }
 
@@ -9,6 +9,8 @@ int Game::play()
 {
 	sf::RenderWindow window;
 	window.create(sf::VideoMode::getDesktopMode(), "2D-PLATFORMER-RPG", sf::Style::None);
+
+	float dt;
 
 	while (window.isOpen())
 	{
@@ -21,9 +23,14 @@ int Game::play()
 				window.close();
 		}
 
+		dt = clock.restart().asSeconds();
+
+		player.update(dt);
+
 		window.clear();
 		camera.update(window);
 		map.draw(window);
+		player.draw(window);
 		window.display();
 	}
 

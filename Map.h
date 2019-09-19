@@ -22,6 +22,7 @@ class Map
 	  void draw(sf::RenderWindow& window);												 //drawing map
 	  void set_tile(int x, int y, int type);											 //sets (type) of tile with coords (x) and (y)
 	  void set_tile(float x, float y, int type);										 //sets (type) of tile containing (x) and (y) as a global mouse position
+	  bool is_terrain(float x, float y);												 //return true if tile containing (x) and (y) isn't blank
 
 	  ~Map();
 };

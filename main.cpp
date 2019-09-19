@@ -6,5 +6,5 @@ int main()
 
 	game.play();
 	
-	return 0;
+	return 0;	
 }
