@@ -9,7 +9,8 @@ Map::Map() : mapArray{ 0 },mapDrawer{sf::Vector2f(GRID,GRID)},color{sf::Color(0,
 	}
 
 	mapArray[30][14] = block2;
-
+	mapArray[60][12] = block3;
+	mapArray[95][11] = block1;
 }
 
 void Map::draw(sf::RenderWindow& window)

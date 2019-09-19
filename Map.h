@@ -4,12 +4,12 @@
 class Map
 {
   private:
-	  int mapArray[MAP_SIZE_X][MAP_SIZE_Y];												//array that keeps types of tiles							
+	  int mapArray[MAP_SIZE_X][MAP_SIZE_Y];												 //array that keeps types of tiles							
 
-	  sf::RectangleShape mapDrawer;														//rectangle for map drawing
-	  sf::Color color;																	//color of mapDrawer
+	  sf::RectangleShape mapDrawer;														 //rectangle for map drawing
+	  sf::Color color;																	 //color of mapDrawer
 
-	  enum type																			//types of tiles
+	  enum type																			 //types of tiles
 	  {
 		blank = 0,
 		block1,
@@ -19,9 +19,9 @@ class Map
   public:
 	  Map();
 
-	  void draw(sf::RenderWindow& window);												//drawing map
-	  void set_tile(int x, int y, int type);											//sets (type) of tile with coords (x) and (y)
-	  void set_tile(float x, float y, int type);										//sets (type) of tile containing (x) and (y) as a global mouse position
+	  void draw(sf::RenderWindow& window);												 //drawing map
+	  void set_tile(int x, int y, int type);											 //sets (type) of tile with coords (x) and (y)
+	  void set_tile(float x, float y, int type);										 //sets (type) of tile containing (x) and (y) as a global mouse position
 
 	  ~Map();
 };

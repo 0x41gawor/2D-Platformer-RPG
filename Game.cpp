@@ -22,6 +22,7 @@ int Game::play()
 		}
 
 		window.clear();
+		camera.update(window);
 		map.draw(window);
 		window.display();
 	}
