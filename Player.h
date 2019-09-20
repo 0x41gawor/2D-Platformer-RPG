@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Constants.h"
 #include "Map.h"
+#include "Animation.h"
 
 class Player
 {
@@ -10,6 +11,11 @@ private:
 	sf::RectangleShape body;															 //rectangle to draw player
 	float width;																		 //lengths of this rectangle
 	float height;																		 //.|.
+
+																						 //A N I M A T I O N
+	Animation animation;																 //instance of animation handling class
+	int texRow;																		     //current row of texture to animate
+	bool faceRigt;																	     //if true texture is loaded from left to right, if false right to left
 
 																						 //G R A V I T Y	
 	float movementSpeed;	                                                             //MS from boots / velocity on OX
@@ -29,7 +35,7 @@ private:
 	bool rightBanned;																	 //.|.
 
 public:
-	Player(Map* map);
+	Player(Map* map, sf::Texture* texture, sf::Vector2u imageCount = sf::Vector2u(3, 4), float switchTime = 0.3f);
 
 	void update(const float& dt);														 //udpate
 	void draw(sf::RenderWindow&);														 //drawing player

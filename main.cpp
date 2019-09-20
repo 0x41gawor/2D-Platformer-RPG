@@ -1,10 +1,16 @@
 #include "Game.h"
+#include "Textures.h"
+
+
 
 int main()
 {
-	Game game;
+	Textures textures;
+
+	Game game(&textures);
 
 	game.play();
 	
+
 	return 0;	
 }

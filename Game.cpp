@@ -1,16 +1,18 @@
 #include "Game.h"
 
 
-Game::Game():player{&map}
+Game::Game(Textures* textures)
+	:textures{*textures},player {&map, & textures->player}
 {
 }
+
 
 int Game::play()
 {
 	sf::RenderWindow window;
 	window.create(sf::VideoMode::getDesktopMode(), "2D-PLATFORMER-RPG", sf::Style::None);
 
-	float dt;
+	float dt{ 0.f };
 
 	while (window.isOpen())
 	{
