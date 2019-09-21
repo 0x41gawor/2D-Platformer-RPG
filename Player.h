@@ -3,6 +3,7 @@
 #include "Constants.h"
 #include "Map.h"
 #include "Animation.h"
+#include "Bullet.h"
 
 class Player
 {
@@ -35,6 +36,7 @@ private:
 	bool rightBanned;																	 //.|.
 
 public:
+
 	Player(Map* map, sf::Texture* texture, sf::Vector2u imageCount = sf::Vector2u(3, 4), float switchTime = 0.3f);
 
 	void update(const float& dt);														 //udpate

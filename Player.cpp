@@ -2,6 +2,7 @@
 
 static const float g = 5.f;
 
+
 Player::Player(Map* map, sf::Texture* texture, sf::Vector2u imageCount, float switchTime)
 	:map{map},movementSpeed{400.f},mass{20.f},velocityY{0.f},jumpForce{30.f},onGround{false},width{50.f},height{80.f},leftBanned{false},
 	rightBanned{ false }, animation{ texture, imageCount, switchTime }, texRow{ 0 }, faceRigt{ true }
@@ -15,7 +16,6 @@ Player::Player(Map* map, sf::Texture* texture, sf::Vector2u imageCount, float sw
 	b = 30.f;
 	c = 27.f;
 	d = 25.f;
-
 }
 
 void Player::update(const float& dt)
