@@ -7,10 +7,6 @@ Map::Map() : mapArray{ 0 },mapDrawer{sf::Vector2f(GRID,GRID)},color{sf::Color(0,
 		for (int x = 0; x < MAP_SIZE_X; x++)
 			mapArray[x][y] = block1;
 	}
-
-	mapArray[30][14] = block2;
-	mapArray[60][12] = block3;
-	mapArray[95][11] = block1;
 }
 
 void Map::draw(sf::RenderWindow& window,float camX)
@@ -70,6 +66,42 @@ bool Map::is_terrain(float x, float y)
 		return false;
 	else
 		return true;
+}
+
+void Map::load_from_file(std::string filename)
+{
+	std::ifstream file;
+
+	filename += ".txt";
+
+	try 
+	{
+		file.open(filename);
+
+		if (!file)
+			throw 404;
+
+		int x{ 0 };
+		int y{ 0 };
+
+		std::string line{ "" };
+		while (!file.eof())
+		{
+			getline(file, line);
+			mapArray[x][y] = atoi(line.c_str());
+			x++;
+			if (x > MAP_SIZE_X-1)
+			{
+				x = 0; y++;
+			}
+		}
+	}
+
+	catch (int x)
+	{
+		std::cerr << "No file found";
+		return;
+	}
 }
 
 Map::~Map()

@@ -82,6 +82,11 @@ void Player::collision()
 	//dont leave map
 	if (newPos.x < 0)
 		newPos.x = 0;
+	else if (newPos.x > MAP_SIZE_X * GRID)
+		newPos.x = MAP_SIZE_X * GRID;
+
+	if (newPos.y > MAP_SIZE_Y * GRID)
+		newPos.y = 0;
 
 	body.setPosition(newPos);
 }

@@ -12,6 +12,8 @@ int Game::play()
 	sf::RenderWindow window;
 	window.create(sf::VideoMode::getDesktopMode(), "2D-PLATFORMER-RPG", sf::Style::None);
 
+	map.load_from_file();
+
 	float dt{ 0.f };
 
 	while (window.isOpen())
