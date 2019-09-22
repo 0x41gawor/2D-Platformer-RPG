@@ -16,6 +16,7 @@ class Game
 	  Player player;
 	  
 	  sf::Clock clock;																	 //clock that measures times of each frame
+	  sf::Sprite cursor;																 //instead of system cursor
 
   public:
 

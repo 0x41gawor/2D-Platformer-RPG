@@ -4,6 +4,8 @@
 Game::Game(Textures* textures)
 	:textures{*textures},player {&map, & textures->player}
 {
+	cursor.setTexture(textures->cursor);
+	cursor.setOrigin(5.f,5.f);
 }
 
 
@@ -11,6 +13,7 @@ int Game::play()
 {
 	sf::RenderWindow window;
 	window.create(sf::VideoMode::getDesktopMode(), "2D-PLATFORMER-RPG", sf::Style::None);
+	window.setMouseCursorVisible(false);
 
 	map.load_from_file();
 	player.load_bulletInfo_from_file();
@@ -31,7 +34,7 @@ int Game::play()
 		}
 
 		mouseGlobalPos = sf::Vector2i(sf::Mouse::getPosition(window).x+static_cast<int>(camera.get_posX())-SCREEN_WIDTH/2, sf::Mouse::getPosition(window).y);
-
+		cursor.setPosition(static_cast<sf::Vector2f>(mouseGlobalPos));
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && player.is_shoot_ok())
 		{
@@ -54,7 +57,7 @@ int Game::play()
 			if (player.gun[i].is_to_destroy())
 				player.gun.erase(player.gun.begin() + i);
 		}
-
+		window.draw(cursor);
 		window.display();
 	}
 

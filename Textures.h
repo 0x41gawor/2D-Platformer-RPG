@@ -3,7 +3,8 @@
 class Textures
 {
   public:
-	sf::Texture player;																	 //keeps player texture
+	sf::Texture player;																	 
+	sf::Texture cursor;
 
   public:
 	  Textures();																		 //loads all textures from files

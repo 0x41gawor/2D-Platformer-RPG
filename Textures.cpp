@@ -2,5 +2,6 @@
 
 Textures::Textures()
 {
-	player.loadFromFile("res/img/player.png");
+	player.loadFromFile("res/img/tex/player.png");
+	cursor.loadFromFile("res/img/tex/cursor.png");
 }
