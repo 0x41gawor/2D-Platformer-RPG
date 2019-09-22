@@ -24,14 +24,11 @@ class Player
 	float velocityY;		                                                             //velocity on OY
 	float jumpForce;		                                                             //how high player is jumping
 	bool onGround;			                                                             //true if player is on ground and there no need to move him down
+	sf::Vector2f movement;																 //movement in each frame
 																							
 																						 //C O L L I S I O N
 	Map* map;																			 //points on map object so class can use Map methods (is_terrain())
-	sf::Vector2f lastPos;																 //postion from last frame to possibly recover it
-	float a;																			 //temporarily here to set final values
-	float b;																			 //used to define position of 8 points around player
-	float c;																			 //these points detect collsion with map
-	float d;																			 //.|.
+	sf::Vector2f pos;																     //position after update() 
 	bool leftBanned;																	 //they forbid movement in specified direction if there is a wall
 	bool rightBanned;																	 //.|.
 
@@ -52,7 +49,7 @@ class Player
 	bool is_shoot_ok();																	 //true if time passed since last shot is higher than attackspeed
 	void reset_lastShotTime();															 //sets lastShotTime value as 0.f
 
-	sf::Vector2f get_postion();													         //returnrs vector2f of player postion
+	sf::Vector2f get_position();													     //returns vector2f of player postion
 
 	~Player();
 };	

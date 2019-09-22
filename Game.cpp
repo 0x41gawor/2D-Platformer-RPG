@@ -38,7 +38,7 @@ int Game::play()
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && player.is_shoot_ok())
 		{
-			player.gun.emplace_back(&map, mouseGlobalPos, player.get_postion(), &player.bulletInfo); player.reset_lastShotTime();
+			player.gun.emplace_back(&map, mouseGlobalPos, player.get_position(), &player.bulletInfo); player.reset_lastShotTime();
 		}
 
 		dt = clock.restart().asSeconds();
