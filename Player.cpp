@@ -1,11 +1,11 @@
 #include "Player.h"
 
-static const float g = 5.f;
+static const float g = 6.f;
 
 
 Player::Player(Map* map, sf::Texture* texture, sf::Vector2u imageCount, float switchTime)
-	:map{map},movementSpeed{400.f},mass{20.f},velocityY{0.f},jumpForce{30.f},onGround{false},width{50.f},height{80.f},leftBanned{false},
-	rightBanned{ false }, animation{ texture, imageCount, switchTime }, texRow{ 0 }, faceRigt{ true }
+	:map{map},movementSpeed{300.f},mass{25.f},velocityY{0.f},jumpForce{35.f},onGround{false},width{50.f},height{80.f},leftBanned{false},
+	rightBanned{ false }, animation{ texture, imageCount, switchTime }, texRow{ 0 }, faceRigt{ true },lastShotTime{0.f}
 {
 	body.setSize(sf::Vector2f(width,height));
 	body.setTexture(texture);
@@ -20,6 +20,8 @@ Player::Player(Map* map, sf::Texture* texture, sf::Vector2u imageCount, float sw
 
 void Player::update(const float& dt)
 {
+	lastShotTime += dt;
+
 	lastPos = body.getPosition();	//last frame postion
 
 	onGround = (map->is_terrain(lastPos.x - d, lastPos.y + a) || map->is_terrain(lastPos.x + d, lastPos.y + a)) ? true : false; //setting onGround value
@@ -73,7 +75,11 @@ void Player::collision()
 
 	//up
 	if ((map->is_terrain(lastPos.x - d, lastPos.y - a) || map->is_terrain(lastPos.x + d, lastPos.y - a)) && velocityY < 0)
+	{
+		velocityY = 0;
 		newPos.y = lastPos.y;
+	}
+		
 
 	//sides
 	leftBanned = (map->is_terrain(lastPos.x - c, lastPos.y - b) || map->is_terrain(lastPos.x - c, lastPos.y + b)) ? true : false;
@@ -89,6 +95,32 @@ void Player::collision()
 		newPos.y = 0;
 
 	body.setPosition(newPos);
+}
+
+void Player::load_bulletInfo_from_file(std::string filename)
+{
+	//<temporarily this way>
+	bulletInfo.color = sf::Color(255, 255, 255);
+	bulletInfo.radius = 5.f;
+	bulletInfo.damage = 100.f;
+	bulletInfo.velocity = 600.f;
+	bulletInfo.attackSpeed = 0.2f;
+	//</temporarily this way>
+}
+
+bool Player::is_shoot_ok()
+{
+	return lastShotTime>bulletInfo.attackSpeed;
+}
+
+void Player::reset_lastShotTime()
+{
+	lastShotTime = 0.f;
+}
+
+sf::Vector2f Player::get_postion()
+{
+	return body.getPosition();
 }
 
 Player::~Player()

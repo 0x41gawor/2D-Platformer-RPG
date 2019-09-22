@@ -22,10 +22,8 @@ class Map
 	  Map();
 
 	  void draw(sf::RenderWindow& window,float camX);								     //drawing map (x)-camera x postion
-	  void set_tile(int x, int y, int type);											 //sets (type) of tile with coords (x) and (y)
-	  void set_tile(float x, float y, int type);										 //sets (type) of tile containing (x) and (y) as a global mouse position
 	  bool is_terrain(float x, float y);												 //return true if tile containing (x) and (y) isn't blank
-	  void load_from_file(std::string filename="1");									 //loading map from file with (fileName) as name
+	  void load_from_file(std::string filename="levels/1");								 //loading map from file with (fileName) as name
 
 	  ~Map();
 };
