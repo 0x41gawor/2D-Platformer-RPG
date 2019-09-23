@@ -5,7 +5,7 @@ static const float g = 6.f;
 
 Player::Player(Map* map, sf::Texture* texture, sf::Vector2u imageCount, float switchTime)
 	:map{map},movementSpeed{300.f},mass{25.f},velocityY{0.f},jumpForce{35.f},onGround{false},width{50.f},height{80.f},leftBanned{false},
-	rightBanned{ false }, animation{ texture, imageCount, switchTime }, texRow{ 0 }, faceRigt{ true },lastShotTime{0.f}
+	rightBanned{ false }, animation{ texture, imageCount, switchTime }, texRow{ 0 }, faceRigt{ true },lastShotTime{0.f},health{1000.f},ATK{1.f}
 {
 	body.setSize(sf::Vector2f(width,height));
 	body.setTexture(texture);
@@ -90,16 +90,7 @@ void Player::collision()
 	body.setPosition(pos);
 }
 
-void Player::load_bulletInfo_from_file(std::string filename)
-{
-	//<temporarily this way>
-	bulletInfo.color = sf::Color(255, 255, 255);
-	bulletInfo.radius = 5.f;
-	bulletInfo.damage = 100.f;
-	bulletInfo.velocity = 600.f;
-	bulletInfo.attackSpeed = 0.1f;
-	//</temporarily this way>
-}
+
 
 bool Player::is_shoot_ok()
 {
@@ -114,6 +105,77 @@ void Player::reset_lastShotTime()
 sf::Vector2f Player::get_position()
 {
 	return body.getPosition();
+}
+
+float Player::get_bullet_damage()
+{
+	return bulletInfo.damage*ATK;
+}
+
+void Player::set_movementSpeed(float x)
+{
+	if (x < 0.f) return;
+
+	movementSpeed = x;
+
+}
+
+void Player::set_mass(float x)
+{
+	if (x < 0.f) return;
+	mass = x;
+}
+
+void Player::set_jumpForce(float x)
+{
+	if (x < 0.f) return;
+	jumpForce = x;
+}
+
+void Player::set_health(float x)
+{
+	if (x < 0.f) return;
+	health = x;
+}
+
+void Player::set_bulletInfo_radius(float x)
+{
+	bulletInfo.radius = x;
+}
+
+void Player::set_bulletInfo_color(sf::Color x)
+{
+	bulletInfo.color = x;
+}
+
+void Player::set_bulletInfo_damage(float x)
+{
+	bulletInfo.damage = x;
+}
+
+void Player::set_bulletInfo_velocity(float x)
+{
+	bulletInfo.velocity = x;
+}
+
+void Player::set_bulletInfo_attackSpeed(float x)
+{
+	bulletInfo.attackSpeed =x;
+}
+
+void Player::print_info()
+{
+	std::cout << "MS: " << movementSpeed << std::endl;
+	std::cout << "jumpForce: " << jumpForce << std::endl;
+	std::cout << "health: " << health << std::endl;
+	std::cout << "ATK: " <<ATK<<std::endl;
+	std::cout << "mass: " << mass << std::endl;
+	std::cout << "damage: " << bulletInfo.damage << std::endl;
+	std::cout << "AS: " << bulletInfo.attackSpeed << std::endl;
+	std::cout << "radius: " << bulletInfo.radius << std::endl;
+	std::cout << "speed: " << bulletInfo.velocity << std::endl;
+	getchar();
+	getchar();
 }
 
 Player::~Player()

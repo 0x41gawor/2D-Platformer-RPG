@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "Player.h"
 #include <SFML/Graphics.hpp>
+#include <fstream>
 
 
 class Game
@@ -23,6 +24,7 @@ class Game
 	  Game(Textures* textures);
 
 	  int play();													                     //play a single level
+	  std::string setup_player(std::string username ="user");							 //setups player members and returns path for level file
 
 	  ~Game();
 
