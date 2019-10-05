@@ -16,6 +16,7 @@ int Game::play()
 
 	map.load_from_file("user");
 	player.load_from_file("user");
+	playerHealthBar.set_maxHealth(player.get_health());
 
 	float dt{ 0.f };
 
@@ -23,6 +24,12 @@ int Game::play()
 
 	while (window.isOpen())
 	{
+		//<temporarily here>
+		if (player.get_health() >= 0.f)
+			player.take_damage(0.2f);
+		else
+			player.take_damage(-1100);
+		//</temporarily here>
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -46,6 +53,7 @@ int Game::play()
 
 		window.clear();
 		camera.update(window);
+		playerHealthBar.update(camera.get_posX(), player.get_health());
 		map.draw(window,camera.get_posX());
 		player.draw(window);
 
@@ -56,6 +64,7 @@ int Game::play()
 			if (player.gun[i].is_to_destroy())
 				player.gun.erase(player.gun.begin() + i);
 		}
+		playerHealthBar.draw(window);
 		window.draw(cursor);
 		window.display();
 	}

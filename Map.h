@@ -1,8 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Constants.h"
 #include <fstream>
 #include <iostream>
+
+#include "Constants.h"
+
 class Map
 {
   private:
@@ -19,6 +21,7 @@ class Map
 		block2,
 		block3,
 	  };
+
   public:
 
 	  Map();

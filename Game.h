@@ -1,11 +1,12 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+#include <fstream>
+
 #include "Textures.h"
 #include "Map.h"
 #include "Camera.h"
 #include "Player.h"
-#include <SFML/Graphics.hpp>
-#include <fstream>
-
+#include "healthBar.h"
 
 class Game
 {
@@ -15,6 +16,8 @@ class Game
 	  Map map;
 	  Camera camera;
 	  Player player;
+	  healthBar playerHealthBar;
+
 	  
 	  sf::Clock clock;																	 //clock that measures times of each frame
 	  sf::Sprite cursor;																 //instead of system cursor

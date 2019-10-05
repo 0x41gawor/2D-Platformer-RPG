@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <cmath>
+
 #include "Constants.h"
 #include "Map.h"
-#include <cmath>
 
 struct BulletInfo
 {

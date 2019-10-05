@@ -5,7 +5,7 @@ static const float g = 6.f;
 
 Player::Player(Map* map, sf::Texture* texture, sf::Vector2u imageCount, float switchTime)
 	:map{map},movementSpeed{300.f},mass{25.f},velocityY{0.f},jumpForce{35.f},onGround{false},width{50.f},height{80.f},leftBanned{false},
-	rightBanned{ false }, animation{ texture, imageCount, switchTime }, texRow{ 0 }, faceRigt{ true },lastShotTime{0.f},health{1000.f},ATK{1.f}
+	rightBanned{ false },animation{ texture, imageCount, switchTime },texRow{ 0 },faceRigt{ true },lastShotTime{0.f},health{1000.f},ATK{1.f}
 {
 	body.setSize(sf::Vector2f(width,height));
 	body.setTexture(texture);
@@ -176,6 +176,11 @@ void Player::load_from_file(std::string username)
 	bulletInfo.color	   = sf::Color(sf::Uint8(weaponValues[4]), sf::Uint8(weaponValues[5]), sf::Uint8(weaponValues[6]));
 }
 
+void Player::take_damage(float dmg)
+{
+		health -= dmg;
+}
+
 sf::Vector2f Player::get_position()
 {
 	return body.getPosition();
@@ -184,6 +189,11 @@ sf::Vector2f Player::get_position()
 float Player::get_bullet_damage()
 {
 	return bulletInfo.damage * ATK;
+}
+
+float Player::get_health()
+{
+	return health;
 }
 
 void Player::print_info()

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+
 #include "Constants.h"
 #include "Map.h"
 #include "Animation.h"
@@ -36,7 +37,7 @@ class Player
 	float health;																		 //health
 	float ATK;																			 //atk - multiples bullet damage
 
-  public:																				 //S H O O T I N G
+public:																				     //S H O O T I N G
 	BulletInfo bulletInfo;																 //struct for keeping common variables for bullets
 	std::vector<Bullet> gun;															 //vector of bullets
 	float lastShotTime;																	 //keeps time passed from last act of firing a gun
@@ -52,9 +53,11 @@ class Player
 	bool is_shoot_ok();																	 //true if time passed since last shot is higher than attackspeed
 	void reset_lastShotTime();															 //sets lastShotTime value as 0.f
 	void load_from_file(std::string username);											 //loads player variables from file
+	void take_damage(float dmg);														 //decreases players health by (dmg)
 
 	sf::Vector2f get_position();													     //returns vector2f of player postion
-	float get_bullet_damage();															 //return bullet damage multiplied by ATK
+	float get_bullet_damage();															 //returns bullet damage multiplied by ATK
+	float get_health();																	 //returns current health
 
 	void print_info();																	 //printing stats in console (for debugging)
 	
