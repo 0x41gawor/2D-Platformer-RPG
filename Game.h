@@ -24,8 +24,7 @@ class Game
 	  Game(Textures* textures);
 
 	  int play();													                     //play a single level
-	  std::string setup_player(std::string username ="user");							 //setups player members and returns path for level file
-
+	
 	  ~Game();
 
 

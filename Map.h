@@ -6,6 +6,7 @@
 class Map
 {
   private:
+
 	  int mapArray[MAP_SIZE_X][MAP_SIZE_Y];												 //array that keeps types of tiles							
 
 	  sf::RectangleShape mapDrawer;														 //rectangle for map drawing
@@ -19,6 +20,7 @@ class Map
 		block3,
 	  };
   public:
+
 	  Map();
 
 	  void draw(sf::RenderWindow& window,float camX);								     //drawing map (x)-camera x postion

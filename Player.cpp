@@ -90,8 +90,6 @@ void Player::collision()
 	body.setPosition(pos);
 }
 
-
-
 bool Player::is_shoot_ok()
 {
 	return lastShotTime>bulletInfo.attackSpeed;
@@ -102,6 +100,82 @@ void Player::reset_lastShotTime()
 	lastShotTime = 0.f;
 }
 
+void Player::load_from_file(std::string username)
+{
+	std::string line{ "" };
+
+	std::ifstream file;
+	std::string filename{ "users/" + username + ".txt" };
+
+	std::string files[4];
+	int userValues[6] = { 0 };
+
+	file.open(filename);
+	int i = 0;
+	while (!file.eof())
+	{
+		getline(file, line);
+		if (i <= 3)
+			files[i] = line;
+		else if (i > 3 && i < 10)
+			userValues[i - 4] = atoi(line.c_str());
+		i++;
+	}
+	file.close();
+
+	std::string levelFilename  = "levels/" + files[0];
+	std::string weaponFilename = "store/"  + files[1] + ".txt";
+	std::string shoeFilename   = "store/"  + files[2] + ".txt";
+	std::string kevlarFilename = "store/"  + files[3] + ".txt";
+
+
+	file.open(weaponFilename);
+	int weaponValues[8] = { 0 };
+	i = 0;
+	while (!file.eof())
+	{
+		getline(file, line);
+		if (i < 8)
+			weaponValues[i] = atoi(line.c_str());
+		i++;
+	}
+	file.close();
+
+	file.open(shoeFilename);
+	int shoeValues[3] = { 0 };
+	i = 0;
+	while (!file.eof())
+	{
+		getline(file, line);
+		if (i < 3)
+			shoeValues[i] = atoi(line.c_str());
+		i++;
+	}
+	file.close();
+
+	file.open(kevlarFilename);
+	int kevlarValues[2] = { 0 };
+	i = 0;
+	while (!file.eof())
+	{
+		getline(file, line);
+		if (i < 2)
+			kevlarValues[i] = atoi(line.c_str());
+		i++;
+	}
+	file.close();
+
+	health				   = static_cast<float>(userValues[6 - 4] + userValues[8 - 4] * 10 + kevlarValues[0]);
+	movementSpeed		   = static_cast<float>(userValues[4 - 4] + shoeValues[0]);
+	jumpForce			   = static_cast<float>(userValues[5 - 4] + shoeValues[1]);
+	mass				   = static_cast<float>(15.f + weaponValues[7] + shoeValues[2] + kevlarValues[1]);
+	bulletInfo.damage	   = static_cast<float>(weaponValues[0]);
+	bulletInfo.attackSpeed = static_cast<float>(weaponValues[1]) / 10.f;
+	bulletInfo.velocity	   = static_cast<float>(weaponValues[2]);
+	bulletInfo.radius	   = static_cast<float>(weaponValues[3]);
+	bulletInfo.color	   = sf::Color(sf::Uint8(weaponValues[4]), sf::Uint8(weaponValues[5]), sf::Uint8(weaponValues[6]));
+}
+
 sf::Vector2f Player::get_position()
 {
 	return body.getPosition();
@@ -109,58 +183,7 @@ sf::Vector2f Player::get_position()
 
 float Player::get_bullet_damage()
 {
-	return bulletInfo.damage*ATK;
-}
-
-void Player::set_movementSpeed(float x)
-{
-	if (x < 0.f) return;
-
-	movementSpeed = x;
-
-}
-
-void Player::set_mass(float x)
-{
-	if (x < 0.f) return;
-	mass = x;
-}
-
-void Player::set_jumpForce(float x)
-{
-	if (x < 0.f) return;
-	jumpForce = x;
-}
-
-void Player::set_health(float x)
-{
-	if (x < 0.f) return;
-	health = x;
-}
-
-void Player::set_bulletInfo_radius(float x)
-{
-	bulletInfo.radius = x;
-}
-
-void Player::set_bulletInfo_color(sf::Color x)
-{
-	bulletInfo.color = x;
-}
-
-void Player::set_bulletInfo_damage(float x)
-{
-	bulletInfo.damage = x;
-}
-
-void Player::set_bulletInfo_velocity(float x)
-{
-	bulletInfo.velocity = x;
-}
-
-void Player::set_bulletInfo_attackSpeed(float x)
-{
-	bulletInfo.attackSpeed =x;
+	return bulletInfo.damage * ATK;
 }
 
 void Player::print_info()
@@ -174,8 +197,8 @@ void Player::print_info()
 	std::cout << "AS: " << bulletInfo.attackSpeed << std::endl;
 	std::cout << "radius: " << bulletInfo.radius << std::endl;
 	std::cout << "speed: " << bulletInfo.velocity << std::endl;
-	getchar();
-	getchar();
+	
+	system("pause");
 }
 
 Player::~Player()

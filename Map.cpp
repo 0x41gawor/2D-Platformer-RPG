@@ -2,7 +2,7 @@
 
 Map::Map() : mapArray{ 0 },mapDrawer{sf::Vector2f(GRID,GRID)},color{sf::Color(0,0,0)}
 {
-	for (int y = 15; y < MAP_SIZE_Y; y++)
+	for (int y = 17; y < MAP_SIZE_Y; y++)
 	{
 		for (int x = 0; x < MAP_SIZE_X; x++)
 			mapArray[x][y] = block1;
@@ -53,11 +53,18 @@ bool Map::is_terrain(float x, float y)
 		return true;
 }
 
-void Map::load_from_file(std::string filename)
+void Map::load_from_file(std::string username)
 {
 	std::ifstream file;
 
-	filename += ".txt";
+	std::string userFilename{"users/" + username + ".txt" };
+
+	file.open(userFilename);
+	std::string line{ "" };
+	getline(file, line);
+	file.close();
+
+	std::string filename{ "levels/" + line + ".txt" };
 
 	try 
 	{
