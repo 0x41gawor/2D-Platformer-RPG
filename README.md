@@ -1,6 +1,6 @@
 # 2d-Platformer RPG
 
-![](![image](https://github.com/user-attachments/assets/7f70608c-1745-4c5f-b00e-7d28305399db)
+![image](https://github.com/user-attachments/assets/7f70608c-1745-4c5f-b00e-7d28305399db
 
 
 Unfinished game written in 2019 in [SFML](https://www.sfml-dev.org) C++ library. It was developed as an engine, not specific game.
